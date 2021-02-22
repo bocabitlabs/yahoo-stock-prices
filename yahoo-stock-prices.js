@@ -23,7 +23,7 @@ const getHistoricalPrices = function (
   ticker,
   frequency,
   callback,
-  cors='no-cors'
+  cors = "no-cors"
 ) {
   const startDate = Math.floor(
     Date.UTC(startYear, startMonth, startDay, 0, 0, 0) / 1000
@@ -33,7 +33,6 @@ const getHistoricalPrices = function (
   );
 
   const promise = new Promise((resolve, reject) => {
-
     let requestOptions = {
       method: "GET",
       mode: cors
@@ -119,13 +118,13 @@ const getCurrentData = function (ticker, cors = "no-cors") {
  *
  * @return {Promise<number>|undefined} Returns a promise if no callback was supplied.
  */
-const getCurrentPrice = function (ticker, callback) {
+const getCurrentPrice = function (ticker, callback, cors = "no-cors") {
   if (callback) {
-    getCurrentData(ticker)
+    getCurrentData(ticker, cors)
       .then((data) => callback(null, data.price))
       .catch((err) => callback(err));
   } else {
-    return getCurrentData(ticker).then((data) => data.price);
+    return getCurrentData(ticker, cors).then((data) => data.price);
   }
 };
 
