@@ -1,13 +1,10 @@
 {
-  "name": "yahoo-stock-prices",
+  "name": "yahoo-stock-prices-fetch",
   "version": "1.1.0",
-  "description": "Node.js API to get stock prices from Yahoo finance",
-  "main": "yahoo-stock-prices.js",
+  "description": "Node.js API to get stock prices from Yahoo finance using Javascript fetch",
+  "main": "yahoo-stock-prices-fetch.js",
   "directories": {
     "test": "tests"
-  },
-  "dependencies": {
-    "request": "^2.81.0"
   },
   "devDependencies": {
     "eslint": "^7.17.0",
@@ -21,19 +18,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/darthbatman/yahoo-stock-prices.git"
+    "url": "https://github.com/bocabitlabs/yahoo-stock-prices-fetch.git"
   },
   "keywords": [
     "yahoo",
     "stocks",
     "stock",
     "prices",
-    "finance"
+    "finance",
+    "react",
+    "fetch"
   ],
-  "author": "Rishi Masand",
+  "author": "Rene Fernandez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/darthbatman/yahoo-stock-prices/issues"
+    "url": "https://github.com/bocabitlabs/yahoo-stock-prices-fetch.git/issues"
   },
-  "homepage": "https://github.com/darthbatman/yahoo-stock-prices#readme"
+  "homepage": "https://github.com/bocabitlabs/yahoo-stock-prices-fetch.git#README"
 }
