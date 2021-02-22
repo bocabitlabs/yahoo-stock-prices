@@ -1,11 +1,11 @@
 # yahoo-stock-prices-fetch
 Node.js API to scrape stock prices from Yahoo Finance.
 
-[![NPM](https://nodei.co/npm/yahoo-stock-prices.png?mini=true)](https://npmjs.org/package/yahoo-stock-prices)
+[![NPM](https://nodei.co/npm/yahoo-stock-prices-fetch.png?mini=true)](https://npmjs.org/package/yahoo-stock-prices-fetch)
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/darthbatman/yahoo-stock-prices)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bocabitlabs/yahoo-stock-prices-fetch)
 
-This is a fork from [yahoo-stock-prices](https://github.com/darthbatman/yahoo-stock-prices) which includes 2 basic differences:
+This is a fork from [yahoo-stock-prices](https://github.com/darthbatman/yahoo-stock-prices) which includes 2 main differences:
 
 1. Uses fetch instead of the npm `request` package.
 2. Has support for `CORS` (Being the default `no-cors`)
