@@ -1,22 +1,52 @@
-# yahoo-stock-prices
+# yahoo-stock-prices-fetch
 Node.js API to scrape stock prices from Yahoo Finance.
 
 [![NPM](https://nodei.co/npm/yahoo-stock-prices.png?mini=true)](https://npmjs.org/package/yahoo-stock-prices)
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/darthbatman/yahoo-stock-prices)
 
+This is a fork from [yahoo-stock-prices](https://github.com/darthbatman/yahoo-stock-prices) which includes 2 basic differences:
+
+1. Uses fetch instead of the npm `request` package.
+2. Has support for `CORS` (Being the default `no-cors`)
+
+This 2 options together make this module **compatible with React and Electron renderer**.
 
 # Installation
 
 ```
-npm install yahoo-stock-prices
+yarn add yahoo-stock-prices-fetch
 ```
 
 # Usage
 
-## getCurrentData
+```js
+import yahooStockPrices from "yahoo-stock-prices-fetch"
+```
+
+## Usage on Electron
+
+Set `webSecurity` to false.
+
+```js
+const mainWindow = new BrowserWindow({
+...
+webPreferences: {
+    ...
+    webSecurity : false
+}
+});
+```
+## API
+
+## getCurrentData (quote: string, corsMode: string)
 
 Returns a promise which resolves with the current price of a stock, along with the currency of that stock.
+
+### Parameters
+
+ - `quote`: Quote of the stock
+ - `corsMode` (optional): (`'cors'`|`'no-cors'`) Default: `'no-cors'`
 
 ### Example
 
@@ -25,9 +55,14 @@ const data = await yahooStockPrices.getCurrentData('AAPL');
 console.log(data); // { currency: 'USD', price: 132.05 }
 ```
 
-## getCurrentPrice
+## getCurrentPrice (quote: string, corsMode: string)
 
 Returns a promise which resolves with only the current price, as a number.
+
+### Parameters
+
+ - `quote`: Quote of the stock
+ - `corsMode` (optional): (`'cors'`|`'no-cors'`) Default: `'no-cors'`
 
 ### Example
 
@@ -50,23 +85,17 @@ Returns a promise that resolves with an array of prices for ticker symbol within
 
 ### Parameters
 
-`startMonth` number (integer from 0 to 11)
+- `startMonth` number (integer from 0 to 11)
+- `startDay` number (integer from 0 to 31)
+- `startYear` number (integer - 4 digit year)
+- `endMonth` number (integer from 0 to 11)
+- `endDay` number (integer from 0 to 31)
+- `endYear` number (integer)
+- `ticker` string (stock ticker symbol)
+- `frequency` string (1 day = "1d", 1 week = "1wk", 1 month = "1mo")
+- `callback` function (Optional - if a callback function is provided no promise will be returned)
+ - `corsMode` (optional): (`'cors'`|`'no-cors'`) Default: `'no-cors'`
 
-`startDay` number (integer from 0 to 31)
-
-`startYear` number (integer - 4 digit year)
-
-`endMonth` number (integer from 0 to 11)
-
-`endDay` number (integer from 0 to 31)
-
-`endYear` number (integer)
-
-`ticker` string (stock ticker symbol)
-
-`frequency` string (1 day = "1d", 1 week = "1wk", 1 month = "1mo")
-
-`callback` function (Optional - if a callback function is provided no promise will be returned)
 
 ### Return Value
 
@@ -143,4 +172,5 @@ console.log(prices);
 
 # License
 
-MIT © [Rishi Masand](https://github.com/darthbatman)
+- Creator of the base module: [Rishi Masand](https://github.com/darthbatman)
+- License: [MIT](./license)
