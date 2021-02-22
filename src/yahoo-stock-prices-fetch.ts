@@ -13,7 +13,7 @@ const baseUrl = "https://finance.yahoo.com/quote/";
  *
  * @return {Promise<{date: number, open: number, high:number, low:number, close:number, volume:number, adjclose:number}[]>|undefined} Returns a promise if no callback was supplied.
  */
-const getHistoricalPrices = function (
+export const getHistoricalPrices = function (
   startMonth: number,
   startDay: number,
   startYear: number,
@@ -77,7 +77,7 @@ const getHistoricalPrices = function (
  *
  * @return {Promise<{price: number, currency: string}>}
  */
-const getCurrentData = function (
+export const getCurrentData = function (
   ticker: string,
   cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
 ) {
@@ -122,7 +122,7 @@ const getCurrentData = function (
  *
  * @return {Promise<number>|undefined} Returns a promise if no callback was supplied.
  */
-const getCurrentPrice = function (
+export const getCurrentPrice = function (
   ticker: string,
   callback: Function,
   cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
@@ -134,10 +134,4 @@ const getCurrentPrice = function (
   } else {
     return getCurrentData(ticker, cors).then((data: any) => data.price);
   }
-};
-
-module.exports = {
-  getHistoricalPrices,
-  getCurrentData,
-  getCurrentPrice
 };

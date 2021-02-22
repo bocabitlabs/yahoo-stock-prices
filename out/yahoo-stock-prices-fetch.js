@@ -1,4 +1,3 @@
-"use strict";
 var baseUrl = "https://finance.yahoo.com/quote/";
 /**
  * @param {number} startMonth
@@ -13,7 +12,7 @@ var baseUrl = "https://finance.yahoo.com/quote/";
  *
  * @return {Promise<{date: number, open: number, high:number, low:number, close:number, volume:number, adjclose:number}[]>|undefined} Returns a promise if no callback was supplied.
  */
-var getHistoricalPrices = function (startMonth, startDay, startYear, endMonth, endDay, endYear, ticker, frequency, callback, cors) {
+export var getHistoricalPrices = function (startMonth, startDay, startYear, endMonth, endDay, endYear, ticker, frequency, callback, cors) {
     if (cors === void 0) { cors = "no-cors"; }
     var startDate = Math.floor(Date.UTC(startYear, startMonth, startDay, 0, 0, 0) / 1000);
     var endDate = Math.floor(Date.UTC(endYear, endMonth, endDay, 0, 0, 0) / 1000);
@@ -52,7 +51,7 @@ var getHistoricalPrices = function (startMonth, startDay, startYear, endMonth, e
  *
  * @return {Promise<{price: number, currency: string}>}
  */
-var getCurrentData = function (ticker, cors) {
+export var getCurrentData = function (ticker, cors) {
     if (cors === void 0) { cors = "no-cors"; }
     return new Promise(function (resolve, reject) {
         var requestOptions = {
@@ -92,7 +91,7 @@ var getCurrentData = function (ticker, cors) {
  *
  * @return {Promise<number>|undefined} Returns a promise if no callback was supplied.
  */
-var getCurrentPrice = function (ticker, callback, cors) {
+export var getCurrentPrice = function (ticker, callback, cors) {
     if (cors === void 0) { cors = "no-cors"; }
     if (callback) {
         getCurrentData(ticker, cors)
@@ -102,9 +101,4 @@ var getCurrentPrice = function (ticker, callback, cors) {
     else {
         return getCurrentData(ticker, cors).then(function (data) { return data.price; });
     }
-};
-module.exports = {
-    getHistoricalPrices: getHistoricalPrices,
-    getCurrentData: getCurrentData,
-    getCurrentPrice: getCurrentPrice
 };
