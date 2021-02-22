@@ -14,16 +14,16 @@ const baseUrl = "https://finance.yahoo.com/quote/";
  * @return {Promise<{date: number, open: number, high:number, low:number, close:number, volume:number, adjclose:number}[]>|undefined} Returns a promise if no callback was supplied.
  */
 const getHistoricalPrices = function (
-  startMonth,
-  startDay,
-  startYear,
-  endMonth,
-  endDay,
-  endYear,
-  ticker,
-  frequency,
-  callback,
-  cors = "no-cors"
+  startMonth: number,
+  startDay: number,
+  startYear: number,
+  endMonth: number,
+  endDay: number,
+  endYear: number,
+  ticker: string,
+  frequency: "1d" | "1wk" | "1mo",
+  callback: Function,
+  cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
 ) {
   const startDate = Math.floor(
     Date.UTC(startYear, startMonth, startDay, 0, 0, 0) / 1000
@@ -77,9 +77,12 @@ const getHistoricalPrices = function (
  *
  * @return {Promise<{price: number, currency: string}>}
  */
-const getCurrentData = function (ticker, cors = "no-cors") {
+const getCurrentData = function (
+  ticker: string,
+  cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
+) {
   return new Promise((resolve, reject) => {
-    let requestOptions = {
+    let requestOptions: RequestInit = {
       method: "GET",
       mode: cors
     };
@@ -88,12 +91,13 @@ const getCurrentData = function (ticker, cors = "no-cors") {
       .then((response) => response.text())
       .then((result) => {
         console.log(result);
-        let price = result
+        let priceText = result
           .split(`"${ticker}":{"sourceInterval"`)[1]
           .split("regularMarketPrice")[1]
           .split('fmt":"')[1]
           .split('"')[0];
-        price = parseFloat(price.replace(",", ""));
+
+        const price = parseFloat(priceText.replace(",", ""));
         const currencyMatch = result.match(/Currency in ([A-Za-z]{3})/);
         let currency = null;
         if (currencyMatch) {
@@ -118,13 +122,17 @@ const getCurrentData = function (ticker, cors = "no-cors") {
  *
  * @return {Promise<number>|undefined} Returns a promise if no callback was supplied.
  */
-const getCurrentPrice = function (ticker, callback, cors = "no-cors") {
+const getCurrentPrice = function (
+  ticker: string,
+  callback: Function,
+  cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
+) {
   if (callback) {
     getCurrentData(ticker, cors)
-      .then((data) => callback(null, data.price))
+      .then((data: any) => callback(null, data.price))
       .catch((err) => callback(err));
   } else {
-    return getCurrentData(ticker, cors).then((data) => data.price);
+    return getCurrentData(ticker, cors).then((data: any) => data.price);
   }
 };
 
