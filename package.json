@@ -1,6 +1,6 @@
 {
   "name": "yahoo-stock-prices-fetch",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Node.js API to get stock prices from Yahoo finance using Javascript fetch",
   "main": "./out/yahoo-stock-prices-fetch.js",
   "types": "./out/yahoo-stock-prices-fetch.d.ts",
