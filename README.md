@@ -5,10 +5,11 @@ Node.js API to scrape stock prices from Yahoo Finance.
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bocabitlabs/yahoo-stock-prices-fetch)
 
-This is a fork from [yahoo-stock-prices](https://github.com/darthbatman/yahoo-stock-prices) which includes 2 main differences:
+This is a fork from [yahoo-stock-prices](https://github.com/darthbatman/yahoo-stock-prices) which includes 3 main differences:
 
 1. Uses fetch instead of the npm `request` package.
 2. Has support for `CORS` (Being the default `no-cors`)
+3. It's writen in Typescript
 
 This 2 options together make this module **compatible with React and Electron renderer**.
 

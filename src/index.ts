@@ -13,7 +13,7 @@ const baseUrl = "https://finance.yahoo.com/quote/";
  *
  * @return {Promise<{date: number, open: number, high:number, low:number, close:number, volume:number, adjclose:number}[]>|undefined} Returns a promise if no callback was supplied.
  */
-export const getHistoricalPrices = function (
+export const getHistoricalPrices = (
   startMonth: number,
   startDay: number,
   startYear: number,
@@ -24,7 +24,7 @@ export const getHistoricalPrices = function (
   frequency: "1d" | "1wk" | "1mo",
   callback: Function,
   cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
-) {
+) => {
   const startDate = Math.floor(
     Date.UTC(startYear, startMonth, startDay, 0, 0, 0) / 1000
   );
@@ -77,10 +77,10 @@ export const getHistoricalPrices = function (
  *
  * @return {Promise<{price: number, currency: string}>}
  */
-export const getCurrentData = function (
+export const getCurrentData = (
   ticker: string,
   cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
-) {
+) => {
   return new Promise((resolve, reject) => {
     let requestOptions: RequestInit = {
       method: "GET",
@@ -90,7 +90,6 @@ export const getCurrentData = function (
     fetch(`${baseUrl + ticker}/`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log(result);
         let priceText = result
           .split(`"${ticker}":{"sourceInterval"`)[1]
           .split("regularMarketPrice")[1]
@@ -122,11 +121,11 @@ export const getCurrentData = function (
  *
  * @return {Promise<number>|undefined} Returns a promise if no callback was supplied.
  */
-export const getCurrentPrice = function (
+export const getCurrentPrice =  (
   ticker: string,
-  callback: Function,
+  callback: Function|undefined = undefined,
   cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
-) {
+) => {
   if (callback) {
     getCurrentData(ticker, cors)
       .then((data: any) => callback(null, data.price))
