@@ -21,7 +21,8 @@ yarn add yahoo-stock-prices-fetch
 # Usage
 
 ```js
-import yahooStockPrices from "yahoo-stock-prices-fetch"
+import {getCurrentData, getCurrentPrice, getHistoricalPrices} from "yahoo-stock-prices-fetch"
+
 ```
 
 ## Usage on Electron
