@@ -175,4 +175,4 @@ console.log(prices);
 # License
 
 - Creator of the base module: [Rishi Masand](https://github.com/darthbatman)
-- License: [MIT](./license)
+- License: [MIT](./LICENSE)
