@@ -22,7 +22,7 @@ export const getHistoricalPrices = (
   endYear: number,
   ticker: string,
   frequency: "1d" | "1wk" | "1mo",
-  callback: Function,
+  callback: Function | undefined = undefined,
   cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
 ) => {
   const startDate = Math.floor(
@@ -121,9 +121,9 @@ export const getCurrentData = (
  *
  * @return {Promise<number>|undefined} Returns a promise if no callback was supplied.
  */
-export const getCurrentPrice =  (
+export const getCurrentPrice = (
   ticker: string,
-  callback: Function|undefined = undefined,
+  callback: Function | undefined = undefined,
   cors: "no-cors" | "cors" | "navigate" | "same-origin" | undefined = "no-cors"
 ) => {
   if (callback) {
